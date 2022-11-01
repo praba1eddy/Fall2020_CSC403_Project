@@ -1,6 +1,6 @@
 ﻿namespace Fall2020_CSC403_Project {
   partial class FrmBattle {
-     <summary>
+    /// <summary>
     /// Required designer variable.
     /// </summary>
     private System.ComponentModel.IContainer components = null;
