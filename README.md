@@ -17,7 +17,7 @@ Teamwork Planning:
 1.	As a user, I want to end a game once I win.
 2.	As a user, I want to end the game once I lose.
 
-•	Prabandha varapana:
+•	Prabandha Varapana:
 
 1.	As a user, I want to add more additional characters in the game so that the game would be more interesting.
 2.	As a user, I can add background music to the game so that they can enjoy the music while playing.
