@@ -2,6 +2,8 @@
 
 Teamwork Planning:
 
+Scrum Project 1:
+
 •	Kavya Ravi: 
 
 1.	As a user, I want to add sound effects once the character collides/attacks other characters. 
@@ -22,7 +24,14 @@ Teamwork Planning:
 1.	As a user, I want to add more additional characters in the game so that the game would be more interesting.
 2.	As a user, I can add background music to the game so that they can enjoy the music while playing.
 
+Scrum Project 2
 
+Prabandha:
+
+1.As a user, I can Regain health by using the health pack	
+
+Kavya Ravi:
+As a user, I want be able to add option menu and difficutly selection at the beginning of the game	
 
 
 
