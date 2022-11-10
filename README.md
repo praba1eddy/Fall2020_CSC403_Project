@@ -24,7 +24,7 @@ Scrum Project 1:
 1.	As a user, I want to add more additional characters in the game so that the game would be more interesting.
 2.	As a user, I can add background music to the game so that they can enjoy the music while playing.
 
-Scrum Project 2
+Scrum Project 2:
 
 Prabandha:
 
