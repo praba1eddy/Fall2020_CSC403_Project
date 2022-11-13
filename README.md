@@ -1,6 +1,6 @@
 
 
-Teamwork Planning:
+
 
 Scrum Project 1:
 
