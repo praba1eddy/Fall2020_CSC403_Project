@@ -20,6 +20,7 @@ namespace Fall2020_CSC403_Project
         private Enemy enemyCheeto;
         private Enemy enemyBoy;
         private Enemy enemyDevil;
+        private Enemy life;
         private Character[] walls;
 
         private DateTime timeBegin;
@@ -30,6 +31,7 @@ namespace Fall2020_CSC403_Project
         private Label lblRating;
         private TextBox txtRating;
         private Button btnSubmitRating;
+        private FrmWeapon frmWeapon;
 
         /// <summary>
         /// Constructor 
@@ -46,6 +48,16 @@ namespace Fall2020_CSC403_Project
         /// <param name="e"></param>
         private void FrmLevel_Load(object sender, EventArgs e)
         {
+            if (ChosenCharacter.Image != null)
+            {
+
+                picPlayer.BackgroundImage = ChosenCharacter.Image;
+            }
+            if (ChosenWeapon.Image != null)
+            {
+
+                picWeapon.Image = ChosenWeapon.Image;
+            }
             //For Background Music
             backgroundMusic = new  SoundPlayer(Resources.backgroundMusic);
             backgroundMusic.PlayLooping();
@@ -59,12 +71,14 @@ namespace Fall2020_CSC403_Project
             // To add new enimies
             enemyBoy = new Enemy(CreatePosition(picEnemyBoy), CreateCollider(picEnemyBoy, PADDING));
             enemyDevil = new Enemy(CreatePosition(picEnemyDevil), CreateCollider(picEnemyDevil, PADDING));
+            life = new Enemy(CreatePosition(picLife), CreateCollider(picLife, PADDING));
 
             bossKoolaid.Img = picBossKoolAid.BackgroundImage;
             enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
             enemyCheeto.Img = picEnemyCheeto.BackgroundImage;
             enemyBoy.Img = picEnemyBoy.BackgroundImage;
             enemyDevil.Img = picEnemyDevil.BackgroundImage;
+
 
             bossKoolaid.Name = "BossKoolAid";
             enemyPoisonPacket.Name = "PoisonPacket";
@@ -123,6 +137,8 @@ namespace Fall2020_CSC403_Project
                 player.MoveBack();
             }
 
+
+
             // check collision with enemies
             if (HitAChar(player, enemyPoisonPacket))
             {
@@ -133,7 +149,7 @@ namespace Fall2020_CSC403_Project
                    // to fight Enemy 
                     Fight(enemyPoisonPacket);
                 }
-                if (enemyPoisonPacket.Health < 0)
+                if (CharacterStatus.PoisonPacketDead )
                 {
                     // to clear dead bodies
                     picEnemyPoisonPacket.Hide();
@@ -147,7 +163,7 @@ namespace Fall2020_CSC403_Project
 
                     Fight(enemyCheeto);
                 }
-                if (enemyCheeto.Health < 0)
+                if (CharacterStatus.CheetoDead)
                 {
                     picEnemyCheeto.Hide();
                 }
@@ -160,7 +176,7 @@ namespace Fall2020_CSC403_Project
 
                     Fight(enemyBoy);
                 }
-                if (enemyBoy.Health < 0)
+                if (CharacterStatus.BoyDead)
                 {
                     picEnemyBoy.Hide();
                 }
@@ -173,17 +189,32 @@ namespace Fall2020_CSC403_Project
 
                     Fight(enemyDevil);
                 }
-                if (enemyDevil.Health < 0)
+                if (CharacterStatus.DevilDead)
                 {
                     picEnemyDevil.Hide();
                 }
+            }
+            else if (HitAChar(player, life) && picLife.Visible == true)
+            {
+
+                if (player.Health < 20 && player.Health > 0 )
+                {
+               
+                picLife.Visible = false;
+                picLife.Hide();
+                picLife.Controls.Clear();
+               
+                player.RechageHealth();
+                }
+
+
             }
             if (HitAChar(player, bossKoolaid))
             {
 
                 if (bossKoolaid.Health > 0)
                 {   
-                    player.RechageHealth();
+                    //player.RechageHealth();
                     Fight(bossKoolaid);
                 }
 
@@ -193,6 +224,7 @@ namespace Fall2020_CSC403_Project
                 }
             }
 
+    
             // update player's picture box
             picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
         }
@@ -216,8 +248,11 @@ namespace Fall2020_CSC403_Project
             return you.Collider.Intersects(other.Collider);
         }
 
+  
+
         private void Fight(Enemy enemy)
         {
+            
 
             // to add sound effects on collision with enymy
             fight = new SoundPlayer(Resources.fight);
@@ -227,14 +262,17 @@ namespace Fall2020_CSC403_Project
             player.MoveBack();
             // get the FrmBattle Instance
             frmBattle = FrmBattle.GetInstance(enemy);
+            frmBattle.StartPosition = FormStartPosition.CenterScreen;
             // to show the FrmBattle Instance
             frmBattle.Show();
-
-
             if (enemy == bossKoolaid)
             {
+
                 frmBattle.SetupForBossBattle();
             }
+
+
+
         }
 
         private void FrmLevel_KeyDown(object sender, KeyEventArgs e)
@@ -325,15 +363,28 @@ namespace Fall2020_CSC403_Project
 
             
         }
-        /// <summary>
-        /// to restart the game
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void picRestartGame_Click(object sender, EventArgs e)
+
+        private void picRestart_Click(object sender, EventArgs e)
+        {
+           Application.Restart();
+        }
+
+        private void FrmLevel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (backgroundMusic != null)
+            {
+
+                backgroundMusic.Stop();
+            }
+        }
+
+        private void picWeapon_Click(object sender, EventArgs e)
         {
 
-            Application.Restart();
+            frmWeapon = new FrmWeapon();
+            frmWeapon.WindowState = FormWindowState.Normal;
+            frmWeapon.StartPosition = FormStartPosition.CenterScreen;
+            frmWeapon.Show();
         }
     }
 }
