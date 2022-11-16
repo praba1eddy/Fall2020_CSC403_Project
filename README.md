@@ -26,7 +26,7 @@
 
 2. Scrum Project
 
-Prabandha:
+Prabandha Varapana:
 
 1.As a user, I can Regain health by using the health pack	
 
@@ -34,11 +34,11 @@ Kavya Ravi:
 
 1. As a user, I want be able to add option menu and difficutly selection at the beginning of the game
 
-Neelima:
+Neelima Chundru:
 
 1.As a user, I want  to select a character in the game		
 
-Rahul:
+Rahul Guntu:
 
 1.As a user, I want to select weapons , So that i can attack enemies.		
 
